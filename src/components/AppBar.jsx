@@ -39,19 +39,19 @@ const AppBar = () => {
             </Text>
           </Link>
         </Pressable>
-        {data.me ? (
-          <Pressable style={styles.pressable} onPress={() => signOut()}>
-            <Text color="white" fontWeight="bold">
-              Sign out
-            </Text>
-          </Pressable>
-        ) : (
+        {data && !data.me ? (
           <Pressable style={styles.pressable}>
             <Link to="/signin">
               <Text color="white" fontWeight="bold">
                 Sign in
               </Text>
             </Link>
+          </Pressable>
+        ) : (
+          <Pressable style={styles.pressable} onPress={() => signOut()}>
+            <Text color="white" fontWeight="bold">
+              Sign out
+            </Text>
           </Pressable>
         )}
       </ScrollView>
