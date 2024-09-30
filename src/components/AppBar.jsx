@@ -1,9 +1,12 @@
 import { View, StyleSheet, Pressable, ScrollView } from "react-native";
 import Constants from "expo-constants";
+import { useQuery } from "@apollo/client";
 
 import Text from "./Text";
 import theme from "../theme";
 import { Link } from "react-router-native";
+import { GET_USER } from "../graphql/queries";
+import useSignOut from "../hooks/useSignOut";
 
 const styles = StyleSheet.create({
   container: {
@@ -20,6 +23,9 @@ const styles = StyleSheet.create({
 });
 
 const AppBar = () => {
+  const { data } = useQuery(GET_USER);
+  const signOut = useSignOut();
+
   return (
     <View style={styles.container}>
       <ScrollView horizontal>
@@ -33,13 +39,21 @@ const AppBar = () => {
             </Text>
           </Link>
         </Pressable>
-        <Pressable style={styles.pressable}>
-          <Link to="/signin">
+        {data.me ? (
+          <Pressable style={styles.pressable} onPress={() => signOut()}>
             <Text color="white" fontWeight="bold">
-              Sign in
+              Sign out
             </Text>
-          </Link>
-        </Pressable>
+          </Pressable>
+        ) : (
+          <Pressable style={styles.pressable}>
+            <Link to="/signin">
+              <Text color="white" fontWeight="bold">
+                Sign in
+              </Text>
+            </Link>
+          </Pressable>
+        )}
       </ScrollView>
     </View>
   );

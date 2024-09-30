@@ -1,7 +1,7 @@
 import { View, Image, StyleSheet } from "react-native";
 import RepositoryInfo from "./RepositoryInfo";
 import RepositoryStats from "./RepositoryStats";
-import theme from "../theme";
+import theme from "../../theme";
 
 const styles = StyleSheet.create({
   ownerImage: {
