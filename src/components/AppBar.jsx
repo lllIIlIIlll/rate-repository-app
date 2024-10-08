@@ -29,10 +29,7 @@ const AppBar = () => {
   return (
     <View style={styles.container}>
       <ScrollView horizontal>
-        <Pressable
-          style={styles.pressable}
-          onPress={() => console.log("Pressed")}
-        >
+        <Pressable style={styles.pressable}>
           <Link to="/">
             <Text color="white" fontWeight="bold">
               Repositories
@@ -40,19 +37,44 @@ const AppBar = () => {
           </Link>
         </Pressable>
         {data && !data.me ? (
-          <Pressable style={styles.pressable}>
-            <Link to="/signin">
-              <Text color="white" fontWeight="bold">
-                Sign in
-              </Text>
-            </Link>
-          </Pressable>
+          <>
+            <Pressable style={styles.pressable}>
+              <Link to="/signup">
+                <Text color="white" fontWeight="bold">
+                  Sign up
+                </Text>
+              </Link>
+            </Pressable>
+            <Pressable style={styles.pressable}>
+              <Link to="/signin">
+                <Text color="white" fontWeight="bold">
+                  Sign in
+                </Text>
+              </Link>
+            </Pressable>
+          </>
         ) : (
-          <Pressable style={styles.pressable} onPress={() => signOut()}>
-            <Text color="white" fontWeight="bold">
-              Sign out
-            </Text>
-          </Pressable>
+          <>
+            <Pressable style={styles.pressable}>
+              <Link to="/createReview">
+                <Text color="white" fontWeight="bold">
+                  Create a review
+                </Text>
+              </Link>
+            </Pressable>
+            <Pressable style={styles.pressable}>
+              <Link to="/userReviews">
+                <Text color="white" fontWeight="bold">
+                  My reviews
+                </Text>
+              </Link>
+            </Pressable>
+            <Pressable style={styles.pressable} onPress={() => signOut()}>
+              <Text color="white" fontWeight="bold">
+                Sign out
+              </Text>
+            </Pressable>
+          </>
         )}
       </ScrollView>
     </View>
